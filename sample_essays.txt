@@ -1,0 +1,77 @@
+===============================================
+SAMPLE ESSAY 1 - STRONG (Climate Change)
+===============================================
+
+c
+
+
+===============================================
+SAMPLE ESSAY 2 - AVERAGE (Technology in Education)
+===============================================
+
+Technology has changed education in many ways. Students now use computers and tablets to complete their homework and research assignments. Online platforms like Khan Academy provide additional learning resources outside the classroom.
+
+However, not all students have access to technology at home, which creates inequality. Some families cannot afford computers or internet connections. Teachers also need training to use technology effectively in their lessons.
+
+Despite these challenges, technology generally improves learning outcomes for students who have access to it. Schools should invest more in technology and digital literacy programs. They should also provide devices to students who need them.
+
+
+===============================================
+SAMPLE ESSAY 3 - WEAK (My Favorite Animal)
+===============================================
+
+my favorite animal is dog. dogs are nice and fun to play with. i have a dog his name is max. max is brown and have big ears. he like to eat food and sleep on the sofa. dogs are the best pet in the world because they are loyal. everyone should have a dog.
+
+
+===============================================
+SAMPLE ESSAY 4 - STRONG (Importance of Reading)
+===============================================
+
+Reading is fundamental to personal and intellectual development. Through books, individuals gain access to diverse perspectives, historical knowledge, and imaginative worlds that expand their understanding of humanity. Moreover, regular reading enhances vocabulary, critical thinking skills, and empathy.
+
+Research consistently demonstrates that students who read frequently perform better academically across all subjects. Reading comprehension skills are essential not only for literature classes but also for understanding scientific texts, mathematical word problems, and historical documents. Consequently, educators must prioritize reading instruction and encourage independent reading habits.
+
+Furthermore, reading serves as a powerful tool for social mobility and lifelong learning. In an increasingly complex world, the ability to analyze and synthesize written information is crucial for professional success. Libraries and digital platforms have made literature more accessible than ever before, democratizing knowledge and opportunity.
+
+In conclusion, cultivating a reading culture benefits individuals and society as a whole. Parents, teachers, and policymakers should work together to promote reading as an essential life skill and source of enrichment.
+
+
+===============================================
+SAMPLE ESSAY 5 - AVERAGE (Social Media Effects)
+===============================================
+
+Social media affects teenagers in both positive and negative ways. It helps them stay connected with friends and family. They can share photos and updates about their lives easily.
+
+However, spending too much time on social media can be harmful. Some studies show it can lead to anxiety and depression. Teenagers might compare themselves to others and feel bad about their own lives.
+
+Cyberbullying is another problem on social media. Some people say mean things online that they would never say in person. Parents should monitor their children's social media use and talk to them about online safety.
+
+Overall, social media is a tool that needs to be used responsibly. It has benefits but also risks that everyone should be aware of.
+
+
+===============================================
+HOW TO USE THESE ESSAYS:
+===============================================
+
+1. Open your browser and go to: http://localhost:5000
+
+2. Copy any essay from above (without the header lines)
+
+3. Paste it into the essay text box on the website
+
+4. Click "Score Essay" button
+
+5. See the results:
+   - Holistic Score (0-100)
+   - Star Rating (1-5 stars)
+   - Rubric Scores (Grammar, Coherence, Relevance, Argument)
+   - AI Feedback
+
+6. Try different essays to see how scores vary!
+
+Expected Scores:
+- Essay 1 (Strong): ~70-85%
+- Essay 2 (Average): ~55-65%
+- Essay 3 (Weak): ~40-50%
+- Essay 4 (Strong): ~70-85%
+- Essay 5 (Average): ~55-65%

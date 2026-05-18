@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Essays - Copy & Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .info-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .info-box h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .info-box a {
+            color: #764ba2;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .info-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .essay-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .essay-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .essay-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .essay-title {
+            font-size: 1.5em;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .quality-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .strong {
+            background: #10b981;
+            color: white;
+        }
+        
+        .average {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .weak {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .essay-text {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #374151;
+            font-size: 1.05em;
+            white-space: pre-wrap;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .copy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .copied {
+            background: #10b981 !important;
+        }
+        
+        .word-count {
+            color: #6b7280;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Sample Essays for Testing</h1>
+        
+        <div class="info-box">
+            <h2>🚀 How to Use:</h2>
+            <p>1. Click the "Copy Essay" button below any essay</p>
+            <p>2. Open the Essay Scoring App: <a href="http://localhost:5000" target="_blank">http://localhost:5000</a></p>
+            <p>3. Paste the essay and click "Score Essay"</p>
+            <p>4. See your results!</p>
+        </div>
+        
+        <!-- Essay 1 -->
+        <div class="essay-card">
+            <div class="essay-header">
+                <div class="essay-title">Essay 1: Climate Change</div>
+                <span class="quality-badge strong">STRONG</span>
+            </div>
+            <div class="essay-text" id="essay1">Climate change represents one of the most pressing challenges facing humanity today. Scientific evidence overwhelmingly demonstrates that human activities, particularly the burning of fossil fuels, are causing unprecedented global temperature rises. The consequences of inaction are dire, including rising sea levels, extreme weather events, and ecosystem collapse.
+
+Governments and corporations must take immediate, decisive action to address this crisis. For instance, transitioning to renewable energy sources like solar and wind power can dramatically reduce carbon emissions. Furthermore, reforestation programs and sustainable agricultural practices offer complementary solutions that can help absorb existing carbon dioxide from the atmosphere.
+
+However, economic interests often hinder progress toward meaningful climate action. Therefore, international cooperation frameworks such as the Paris Agreement are essential to align national policies and ensure accountability. Developed nations must also provide financial and technological support to developing countries to facilitate their transition to clean energy.
+
+In conclusion, the scientific evidence unequivocally demands urgent, coordinated global action to avert catastrophic and irreversible climate consequences. The time for debate has passed; now is the time for action.</div>
+            <div class="word-count">📊 Word Count: 167 | Expected Score: 70-85%</div>
+            <button class="copy-btn" onclick="copyEssay('essay1', this)">📋 Copy Essay</button>
+        </div>
+        
+        <!-- Essay 2 -->
+        <div class="essay-card">
+            <div class="essay-header">
+                <div class="essay-title">Essay 2: Technology in Education</div>
+                <span class="quality-badge average">AVERAGE</span>
+            </div>
+            <div class="essay-text" id="essay2">Technology has changed education in many ways. Students now use computers and tablets to complete their homework and research assignments. Online platforms like Khan Academy provide additional learning resources outside the classroom.
+
+However, not all students have access to technology at home, which creates inequality. Some families cannot afford computers or internet connections. Teachers also need training to use technology effectively in their lessons.
+
+Despite these challenges, technology generally improves learning outcomes for students who have access to it. Schools should invest more in technology and digital literacy programs. They should also provide devices to students who need them.</div>
+            <div class="word-count">📊 Word Count: 98 | Expected Score: 55-65%</div>
+            <button class="copy-btn" onclick="copyEssay('essay2', this)">📋 Copy Essay</button>
+        </div>
+        
+        <!-- Essay 3 -->
+        <div class="essay-card">
+            <div class="essay-header">
+                <div class="essay-title">Essay 3: My Favorite Animal</div>
+                <span class="quality-badge weak">WEAK</span>
+            </div>
+            <div class="essay-text" id="essay3">my favorite animal is dog. dogs are nice and fun to play with. i have a dog his name is max. max is brown and have big ears. he like to eat food and sleep on the sofa. dogs are the best pet in the world because they are loyal. everyone should have a dog.</div>
+            <div class="word-count">📊 Word Count: 56 | Expected Score: 40-50%</div>
+            <button class="copy-btn" onclick="copyEssay('essay3', this)">📋 Copy Essay</button>
+        </div>
+        
+        <!-- Essay 4 -->
+        <div class="essay-card">
+            <div class="essay-header">
+                <div class="essay-title">Essay 4: Importance of Reading</div>
+                <span class="quality-badge strong">STRONG</span>
+            </div>
+            <div class="essay-text" id="essay4">Reading is fundamental to personal and intellectual development. Through books, individuals gain access to diverse perspectives, historical knowledge, and imaginative worlds that expand their understanding of humanity. Moreover, regular reading enhances vocabulary, critical thinking skills, and empathy.
+
+Research consistently demonstrates that students who read frequently perform better academically across all subjects. Reading comprehension skills are essential not only for literature classes but also for understanding scientific texts, mathematical word problems, and historical documents. Consequently, educators must prioritize reading instruction and encourage independent reading habits.
+
+Furthermore, reading serves as a powerful tool for social mobility and lifelong learning. In an increasingly complex world, the ability to analyze and synthesize written information is crucial for professional success. Libraries and digital platforms have made literature more accessible than ever before, democratizing knowledge and opportunity.
+
+In conclusion, cultivating a reading culture benefits individuals and society as a whole. Parents, teachers, and policymakers should work together to promote reading as an essential life skill and source of enrichment.</div>
+            <div class="word-count">📊 Word Count: 162 | Expected Score: 70-85%</div>
+            <button class="copy-btn" onclick="copyEssay('essay4', this)">📋 Copy Essay</button>
+        </div>
+        
+        <!-- Essay 5 -->
+        <div class="essay-card">
+            <div class="essay-header">
+                <div class="essay-title">Essay 5: Social Media Effects</div>
+                <span class="quality-badge average">AVERAGE</span>
+            </div>
+            <div class="essay-text" id="essay5">Social media affects teenagers in both positive and negative ways. It helps them stay connected with friends and family. They can share photos and updates about their lives easily.
+
+However, spending too much time on social media can be harmful. Some studies show it can lead to anxiety and depression. Teenagers might compare themselves to others and feel bad about their own lives.
+
+Cyberbullying is another problem on social media. Some people say mean things online that they would never say in person. Parents should monitor their children's social media use and talk to them about online safety.
+
+Overall, social media is a tool that needs to be used responsibly. It has benefits but also risks that everyone should be aware of.</div>
+            <div class="word-count">📊 Word Count: 120 | Expected Score: 55-65%</div>
+            <button class="copy-btn" onclick="copyEssay('essay5', this)">📋 Copy Essay</button>
+        </div>
+    </div>
+    
+    <script>
+        function copyEssay(essayId, button) {
+            const essayText = document.getElementById(essayId).innerText;
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(essayText).then(() => {
+                // Change button text and style
+                const originalText = button.innerHTML;
+                button.innerHTML = '✅ Copied!';
+                button.classList.add('copied');
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy. Please select and copy manually.');
+                console.error('Copy failed:', err);
+            });
+        }
+    </script>
+</body>
+</html>

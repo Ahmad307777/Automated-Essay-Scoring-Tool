@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Automatic Essay Scoring System — AI-powered multi-dimensional essay evaluation using LSTM, BERT, and GPT-2 models." />
+  <title>Essay Scoring AI | Automatic Essay Evaluation Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+
+  <header>
+    <div class="header-brand">
+      <div class="header-icon">🎓</div>
+      <div>
+        <div class="header-title">Essay Scoring AI</div>
+        <div class="header-subtitle">Multi-Dimensional Evaluation &amp; Feedback Generation</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+      <span class="badge">LSTM</span>
+      <span class="badge">BERT</span>
+      <span class="badge">GPT-2</span>
+      <span class="badge">ASAP Dataset</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Essay Input ─────────────────────────────── -->
+    <div class="card card-wide animate-in" id="essay-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <span class="card-title">Essay Submission</span>
+      </div>
+
+      <input type="text" class="prompt-input" id="prompt-input"
+        placeholder="Essay prompt / question (optional) — helps improve relevance scoring" />
+
+      <textarea id="essay-input"
+        placeholder="Paste or type the student essay here…&#10;&#10;Example: 'Climate change is one of the most pressing issues of our time. Scientists have provided evidence that…'"></textarea>
+
+      <div id="error-msg" class="error-msg"></div>
+
+      <div class="input-row">
+        <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;">
+          <span class="word-counter" id="word-counter">0 words</span>
+          <label class="toggle-row">
+            <span>Use GPT-2 feedback</span>
+            <label class="toggle">
+              <input type="checkbox" id="use-gpt-toggle" />
+              <span class="toggle-slider"></span>
+            </label>
+            <span id="gpt-label" style="color:var(--text-muted)">Off</span>
+          </label>
+        </div>
+        <button class="btn-submit" id="submit-btn" onclick="scoreEssay()">
+          <div class="spinner" id="spinner"></div>
+          <span id="btn-text">⚡ Score Essay</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Holistic Score ──────────────────────────── -->
+    <div class="card animate-in delay-1" id="score-card">
+      <div class="card-header">
+        <div class="card-icon">🏆</div>
+        <span class="card-title">Holistic Score</span>
+      </div>
+      <div class="score-hero" id="score-hero">
+        <div class="state-placeholder" id="score-placeholder">
+          <div class="icon">📊</div>
+          <div>Submit an essay to see your score</div>
+        </div>
+        <div id="score-display" style="display:none;align-items:center;flex-direction:column;gap:0.25rem;">
+          <div class="score-ring">
+            <svg viewBox="0 0 140 140" width="140" height="140">
+              <defs>
+                <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#38bdf8" />
+                  <stop offset="100%" stop-color="#818cf8" />
+                </linearGradient>
+              </defs>
+              <circle class="ring-bg" cx="70" cy="70" r="60" />
+              <circle class="ring-fill" id="ring-fill" cx="70" cy="70" r="60" />
+            </svg>
+            <div class="score-center">
+              <div class="score-number" id="score-number">--</div>
+              <div class="score-label">/ 100</div>
+            </div>
+          </div>
+          <div class="score-stars" id="score-stars">☆☆☆☆☆</div>
+          <div class="score-grade" id="score-grade"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Radar Chart ─────────────────────────────── -->
+    <div class="card animate-in delay-2" id="radar-card">
+      <div class="card-header">
+        <div class="card-icon">🕸️</div>
+        <span class="card-title">Dimension Radar</span>
+      </div>
+      <div class="state-placeholder" id="radar-placeholder">
+        <div class="icon">📡</div>
+        <div>Radar chart will appear here</div>
+      </div>
+      <div class="chart-container" id="radar-container" style="display:none;">
+        <canvas id="radar-chart"></canvas>
+      </div>
+    </div>
+
+    <!-- ── Rubric Bars ─────────────────────────────── -->
+    <div class="card animate-in delay-2" id="rubric-card">
+      <div class="card-header">
+        <div class="card-icon">📋</div>
+        <span class="card-title">Rubric Breakdown</span>
+      </div>
+      <div class="state-placeholder" id="rubric-placeholder">
+        <div class="icon">📏</div>
+        <div>Dimension scores will appear here</div>
+      </div>
+      <div class="rubric-bar-list" id="rubric-bars" style="display:none;">
+        <div class="rubric-row">
+          <div class="rubric-head">
+            <span class="rubric-label">🔤 Grammar</span>
+            <span class="rubric-value" id="v-grammar" style="color:var(--accent-green)">--%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill bar-grammar" id="b-grammar"></div>
+          </div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-head">
+            <span class="rubric-label">🔗 Coherence</span>
+            <span class="rubric-value" id="v-coherence" style="color:var(--accent-blue)">--%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill bar-coherence" id="b-coherence"></div>
+          </div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-head">
+            <span class="rubric-label">🎯 Relevance</span>
+            <span class="rubric-value" id="v-relevance" style="color:var(--accent-amber)">--%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill bar-relevance" id="b-relevance"></div>
+          </div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-head">
+            <span class="rubric-label">⚡ Argument Strength</span>
+            <span class="rubric-value" id="v-argument" style="color:var(--accent-purple)">--%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill bar-argument" id="b-argument"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Text Features ───────────────────────────── -->
+    <div class="card animate-in delay-3" id="features-card">
+      <div class="card-header">
+        <div class="card-icon">🔬</div>
+        <span class="card-title">Extracted Features</span>
+      </div>
+      <div class="state-placeholder" id="features-placeholder">
+        <div class="icon">🔍</div>
+        <div>Feature analysis will appear here</div>
+      </div>
+      <div class="features-grid" id="features-grid" style="display:none;">
+        <div class="feature-tile">
+          <div class="feature-value" id="f-words">–</div>
+          <div class="feature-key">Word Count</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-value" id="f-sents">–</div>
+          <div class="feature-key">Sentences</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-value" id="f-avglen">–</div>
+          <div class="feature-key">Avg Words/Sent</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-value" id="f-vocab">–</div>
+          <div class="feature-key">Vocab Richness</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-value" id="f-discourse">–</div>
+          <div class="feature-key">Discourse Markers</div>
+        </div>
+        <div class="feature-tile">
+          <div class="feature-value" id="f-errors">–</div>
+          <div class="feature-key">Grammar Errors</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── AI Feedback ─────────────────────────────── -->
+    <div class="card animate-in delay-3" id="feedback-card">
+      <div class="card-header">
+        <div class="card-icon">💬</div>
+        <span class="card-title">AI Constructive Feedback</span>
+      </div>
+      <div class="state-placeholder" id="feedback-placeholder">
+        <div class="icon">🤖</div>
+        <div>GPT-powered feedback will appear here</div>
+      </div>
+      <div id="feedback-box" style="display:none;">
+        <div id="error-list-container" style="margin-bottom: 1.5rem; display: none;">
+          <div
+            style="color:var(--text-dim); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">
+            Detected Issues</div>
+          <ul id="grammar-error-list" class="grammar-error-list"></ul>
+        </div>
+        <div class="feedback-text" id="feedback-text"></div>
+      </div>
+    </div>
+
+    <!-- ── Model Comparison ────────────────────────── -->
+    <div class="card card-wide animate-in delay-4" id="compare-card">
+      <div class="card-header">
+        <div class="card-icon">⚖️</div>
+        <span class="card-title">Model Architecture Comparison</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:1.5rem;align-items:start;" id="compare-inner">
+        <table class="model-table" id="compare-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>QWK ↑</th>
+              <th>Pearson r ↑</th>
+              <th>RMSE ↓</th>
+              <th>Speed</th>
+              <th>Params</th>
+            </tr>
+          </thead>
+          <tbody id="compare-tbody"></tbody>
+        </table>
+        <div id="compare-chart-container">
+          <canvas id="compare-chart"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+
+</html>
